@@ -11,11 +11,7 @@ console.log(path.resolve('./') + '/src/**/*.entity{.ts,.js}');
     ServeStaticModule.forRoot({
       rootPath: path.resolve('./public'),
     }),
-    TypeOrmModule.forRoot({
-      ...DB_CONFIG,
-      entities: [path.resolve('./') + '/src/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(DB_CONFIG),
     DomainModule,
   ],
   controllers: [],
