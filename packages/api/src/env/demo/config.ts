@@ -5,7 +5,7 @@ import { Transport, RmqOptions } from '@nestjs/microservices';
 export const CORS = false;
 export const DB_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: '64.225.0.66',
+  host: 'localhost',
   port: 3306,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
