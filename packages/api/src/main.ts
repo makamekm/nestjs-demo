@@ -13,7 +13,7 @@ async function bootstrapMS() {
 
 async function bootstrapAPI() {
   const app = await NestFactory.create(AppModule, { cors: CORS });
-  await app.listen(5000);
+  await app.listen(process.env.PORT || 5000);
 }
 
 bootstrapAPI();
