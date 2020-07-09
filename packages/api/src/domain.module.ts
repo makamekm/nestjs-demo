@@ -6,13 +6,18 @@ import { Domain } from './entities/domain.entity';
 import { DomainContact } from './entities/domain-contact.entity';
 import { UploadList } from './entities/upload-list.entity';
 import { DomainMSController } from './domain.ms.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import {
+  ClientsModule,
+  Transport,
+  ClientsModuleOptions,
+} from '@nestjs/microservices';
+import { MS_CONFIG } from '@env/config';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Domain, DomainContact, UploadList]),
     ClientsModule.register([
-      { name: 'DOMAIN_SERVICE', transport: Transport.TCP },
+      { name: 'DOMAIN_SERVICE', ...(MS_CONFIG as ClientsModuleOptions) },
     ]),
   ],
   controllers: [DomainController, DomainMSController],

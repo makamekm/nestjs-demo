@@ -1,16 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { AppModule } from './app.module';
-import { CORS } from '@env/config';
+import { CORS, MS_CONFIG } from '@env/config';
 
 async function bootstrapMS() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+  const ms = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
-    {
-      transport: Transport.TCP,
-    },
+    MS_CONFIG,
   );
-  app.listen(() => console.log('Microservice is listening...'));
+  ms.listen(() => console.log('Microservice is listening...'));
 }
 
 async function bootstrapAPI() {
