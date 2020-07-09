@@ -5,7 +5,7 @@ import { TcpOptions, Transport } from '@nestjs/microservices';
 export const DB_CONFIG: TypeOrmModuleOptions = {
   type: 'sqlite',
   database: path.resolve('./database.sqlite'),
-  entities: [path.resolve('./') + '/dist/**/*.entity{.ts,.js}'],
+  entities: [path.resolve('./') + '/src/**/*.entity{.ts,.js}'],
   synchronize: true,
 };
 export const CORS = false;
