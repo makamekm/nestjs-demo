@@ -6,7 +6,7 @@ import {
   LoadingService,
   LoadingStore,
 } from "~/components/Loading/LoadingService";
-import { IList } from "./dto.interface";
+import { IList } from "~/app/models/list.interface";
 import { API } from "@env/config";
 
 export const ListService = createService(

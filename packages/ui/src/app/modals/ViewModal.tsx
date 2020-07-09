@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { useKeyPress } from "~/hooks";
 import { Modal } from "~/components/Modal/Modal";
 import { Button } from "~/components/Button/Button";
-import { IList } from "./dto.interface";
+import { IList } from "~/app/models/list.interface";
 
 const CloseIcon = () => (
   <svg

@@ -9,8 +9,8 @@ import { RoutedContent } from "./routing";
 import { AppLayout } from "./app/AppLayout";
 import { LoadingScreen } from "./components/Loading/LoadingScreen";
 import { LoadingService } from "./components/Loading/LoadingService";
-import { LayoutService } from "./app/LayoutService";
-import { ListService } from "./app/ListService";
+import { LayoutService } from "./app/services/LayoutService";
+import { ListService } from "./app/services/ListService";
 
 const basePath = process.env.BASE_PATH || "/";
 

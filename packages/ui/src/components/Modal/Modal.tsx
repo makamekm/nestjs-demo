@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useTransition, animated } from "react-spring";
 import classNames from "classnames";
 import { observer, useLocalStore } from "mobx-react";
-import { LayoutService } from "~/app/LayoutService";
+import { LayoutService } from "~/app/services/LayoutService";
 import { useKeyPress } from "~/hooks";
 
 export const Modal: React.FC<{

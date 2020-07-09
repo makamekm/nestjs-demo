@@ -4,7 +4,7 @@ import { useKeyPress } from "~/hooks";
 import { Modal } from "~/components/Modal/Modal";
 import { Button } from "~/components/Button/Button";
 import { LoadingService } from "~/components/Loading/LoadingService";
-import { ListService } from "./ListService";
+import { ListService } from "~/app/services/ListService";
 import { toast } from "react-toastify";
 import { API } from "@env/config";
 

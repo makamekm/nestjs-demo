@@ -1,11 +1,10 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { LayoutService } from "./LayoutService";
+import { LayoutService } from "./services/LayoutService";
 import { observer } from "mobx-react";
 import { useHistory } from "react-router";
 import { Button } from "~/components/Button/Button";
-import { AddListModal } from "./AddListModal";
-// import { SHOW_FULLSCREEN } from "@env/config";
+import { AddListModal } from "./modals/AddListModal";
 
 export const AppLayout: React.FC = observer(({ children }) => {
   const history = useHistory();
@@ -52,7 +51,6 @@ export const AppLayout: React.FC = observer(({ children }) => {
                   </div>
                 </div>
               )}
-              {/* {service.topbar && <TopMenu />} */}
               {children}
             </div>
             {!service.empty && (

@@ -2,10 +2,10 @@ import React from "react";
 import moment from "moment";
 import classNames from "classnames";
 import { observer } from "mobx-react";
-import { useLayoutConfig } from "./LayoutService";
-import { ViewModal } from "./ViewModal";
-import { ListService } from "./ListService";
-import { EmptyIcon } from "./EmptyIcon";
+import { useLayoutConfig } from "./services/LayoutService";
+import { ViewModal } from "./modals/ViewModal";
+import { ListService } from "./services/ListService";
+import { EmptyIcon } from "~/components/Icons/EmptyIcon";
 import { Button } from "~/components/Button/Button";
 
 export const Dashboard = observer(() => {
