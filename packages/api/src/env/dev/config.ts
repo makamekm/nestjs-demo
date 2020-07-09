@@ -7,3 +7,4 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
   entities: [path.resolve('./') + '/src/**/*.entity{.ts,.js}'],
   synchronize: true,
 };
+export const CORS = true;

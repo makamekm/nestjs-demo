@@ -7,6 +7,7 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
   entities: [path.resolve('./') + '/dist/**/*.entity{.ts,.js}'],
   synchronize: true,
 };
+export const CORS = false;
 
 // host: 'localhost',
 // port: 3306,
