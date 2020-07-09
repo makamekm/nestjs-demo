@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
-import { DomainModule } from './domain.module';
+import { DomainModule } from './modules/domain/domain.module';
 import { DB_CONFIG } from '@env/config';
 
 @Module({
