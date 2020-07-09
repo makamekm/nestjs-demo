@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router";
 import { Error404 } from "./app/Error404";
-import { Dashboard } from "./app/Dashboard";
+import { Dashboard } from "./app/Dashboard/Dashboard";
 
 //------ Route Definitions --------
 export const RoutedContent = () => {
