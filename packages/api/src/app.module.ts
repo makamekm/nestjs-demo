@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 import { DomainModule } from './domain.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve('./public'),
+    }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: path.resolve('./database.sqlite'),
