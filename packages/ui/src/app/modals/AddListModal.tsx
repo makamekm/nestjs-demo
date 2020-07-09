@@ -52,9 +52,6 @@ const AddListModalContent: React.FC<{
     },
   }));
   useKeyPress("Escape", () => {
-    toast("You have successfuly created the list", {
-      type: "success",
-    });
     close();
   });
   return (
