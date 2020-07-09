@@ -9,7 +9,11 @@ const prependBabelPlugin = (plugin) => (config) => {
 module.exports = override(
   prependBabelPlugin("styled-jsx/babel"),
   addWebpackAlias({
-    "@env": path.resolve(__dirname, "src/env", process.env.ENV),
+    "@env": path.resolve(
+      __dirname,
+      "src/env",
+      process.env.MAIN_ENV || process.env.ENV || "prod"
+    ),
     "~": path.resolve(__dirname, "src/"),
   })
 );

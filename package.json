@@ -8,6 +8,7 @@
     "build:packages": "lerna run build",
     "build:dist": "ncp ./packages/ui/build ./packages/api/public",
     "start": "lerna run start:prod",
+    "start:build": "run-s build start",
     "dev": "lerna run start"
   },
   "devDependencies": {
