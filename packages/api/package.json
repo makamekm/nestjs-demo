@@ -9,7 +9,8 @@
     "prebuild": "rimraf dist",
     "build:deprecated": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "cross-env ENV=dev node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
+    "start": "nodemon --watch src -e ts --exec \"npm run start:dev || exit 1\"",
+    "start:dev": "cross-env ENV=dev node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
     "start:prod": "cross-env ENV=prod node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -56,7 +57,8 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4"
   },
   "jest": {
     "moduleFileExtensions": [
