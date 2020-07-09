@@ -8,12 +8,15 @@ async function bootstrapMS() {
     AppModule,
     MS_CONFIG,
   );
-  ms.listen(() => console.log('Microservice is listening...'));
+  await ms.listenAsync();
+  console.log('Microservice is listening...');
 }
 
 async function bootstrapAPI() {
   const app = await NestFactory.create(AppModule, { cors: CORS });
-  await app.listen(process.env.PORT || 5000);
+  const port = process.env.PORT || 5000;
+  await app.listen(port);
+  console.log('Server is listening...', port);
 }
 
 bootstrapAPI();
