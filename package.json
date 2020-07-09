@@ -4,7 +4,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "prebuild": "rimraf ./packages/api/public",
-    "build": "run-s prebuild build:packages build:dist",
+    "build": "run-s bootstrap prebuild build:packages build:dist",
     "build:packages": "lerna run build",
     "build:dist": "ncp ./packages/ui/build ./packages/api/public",
     "start": "lerna run start:prod",
