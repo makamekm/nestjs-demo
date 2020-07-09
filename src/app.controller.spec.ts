@@ -2,7 +2,7 @@
 // import { AppController } from './app.controller';
 // import { AppService } from './domain.service';
 
-describe('AppController', () => {
+describe('DomainController', () => {
   // let appController: AppController;
 
   beforeEach(async () => {
