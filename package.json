@@ -5,11 +5,11 @@
     "bootstrap": "lerna bootstrap",
     "prebuild": "rimraf ./packages/api/public",
     "build": "run-s bootstrap prebuild build:packages build:dist",
-    "build:packages": "lerna run build",
+    "build:packages": "lerna run build --stream",
     "build:dist": "ncp ./packages/ui/build ./packages/api/public",
-    "start": "lerna run start:prod",
+    "start": "lerna run start:prod --stream",
     "start:build": "run-s build start",
-    "dev": "lerna run start"
+    "dev": "lerna run start --stream"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
