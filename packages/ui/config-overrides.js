@@ -5,7 +5,6 @@ const prependBabelPlugin = (plugin) => (config) => {
   getBabelLoader(config).options.plugins.unshift(plugin);
   return config;
 };
-console.log(path, __dirname);
 
 module.exports = override(
   prependBabelPlugin("styled-jsx/babel"),
