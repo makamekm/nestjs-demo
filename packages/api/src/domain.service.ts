@@ -6,8 +6,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Domain } from './entities/domain.entity';
 import { DomainContact } from './entities/domain-contact.entity';
 import { UploadList } from './entities/upload-list.entity';
+import { HUNTER_API_KEY } from '@env/config';
 
-const HUNTER_API_KEY = '3c5bba51ebec857a91f2449e0218ab295041a1c7';
 const DOMAIN_REGEXP = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/gim;
 
 export interface IListInput {

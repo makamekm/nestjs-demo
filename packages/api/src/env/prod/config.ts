@@ -12,3 +12,4 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
 export const MS_CONFIG: TcpOptions = {
   transport: Transport.TCP,
 };
+export const HUNTER_API_KEY = '3c5bba51ebec857a91f2449e0218ab295041a1c7';

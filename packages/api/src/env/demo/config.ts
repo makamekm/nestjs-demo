@@ -23,3 +23,4 @@ export const MS_CONFIG: RmqOptions = {
     },
   },
 };
+export const HUNTER_API_KEY = '3c5bba51ebec857a91f2449e0218ab295041a1c7';
