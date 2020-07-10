@@ -4,9 +4,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "rimraf ./packages/api/public",
-    "build": "run-s bootstrap clean build:packages build:dist",
+    "build": "run-s bootstrap clean build:packages build:combine",
     "build:packages": "lerna run build --stream",
-    "build:dist": "ncp ./packages/ui/build ./packages/api/public",
+    "build:combine": "ncp ./packages/ui/build ./packages/api/public",
     "start": "lerna run start:prod --stream",
     "start:build": "run-s build start",
     "dev": "cross-env CI=true lerna run start --stream"
