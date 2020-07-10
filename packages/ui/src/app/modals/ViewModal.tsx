@@ -37,13 +37,21 @@ const ViewModalContent: React.FC<{
           <table className="w-full">
             <tbody>
               <tr>
-                <th className="font-medium text-left px-8 py-4">Domain</th>
-                <th className="font-medium text-left px-8 py-4">
+                <th className="font-medium text-left px-8 py-4 whitespace-no-wrap">
+                  Domain
+                </th>
+                <th className="font-medium text-left px-8 py-4 whitespace-no-wrap">
                   Email Address
                 </th>
-                <th className="font-medium text-right px-8 py-4">First Name</th>
-                <th className="font-medium text-right px-8 py-4">Last Name</th>
-                <th className="font-medium text-right px-8 py-4">Confidence</th>
+                <th className="font-medium text-right px-8 py-4 whitespace-no-wrap">
+                  First Name
+                </th>
+                <th className="font-medium text-right px-8 py-4 whitespace-no-wrap">
+                  Last Name
+                </th>
+                <th className="font-medium text-right px-8 py-4 whitespace-no-wrap">
+                  Confidence
+                </th>
               </tr>
               {data.contacts.map((contact) => {
                 return (

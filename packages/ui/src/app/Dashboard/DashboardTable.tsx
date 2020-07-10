@@ -13,7 +13,7 @@ export const DashboardTable = observer(() => {
         <table className="w-full">
           <tbody>
             <tr>
-              <th className="font-medium text-left px-8 py-4 w-4/6">
+              <th className="font-medium text-left px-8 py-4 w-4/6 whitespace-no-wrap">
                 List Name
               </th>
               <th className="font-medium text-left px-8 py-4 whitespace-no-wrap">

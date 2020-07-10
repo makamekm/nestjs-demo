@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { observer, useLocalStore } from "mobx-react";
 import { useKeyPress } from "~/hooks";
 import { Modal } from "~/components/Modal/Modal";
@@ -78,10 +79,13 @@ const AddListModalContent: React.FC<{
           </label>
         </div>
       </div>
-      <div className="w-8/12">
-        <div className="table-overflow w-full px-2 flex flex-col items-center justify-start py-4">
+      <div className="w-8/12 mt-4">
+        <div className="table-overflow w-full px-2 flex flex-col items-center justify-start">
           {state.urls.map((value, index) => (
-            <div className="relative w-full mt-2" key={index}>
+            <div
+              className={classNames("relative w-full", { "mt-2": index !== 0 })}
+              key={index}
+            >
               <input
                 placeholder=" "
                 className="input border-gray-400 border-2 bg-gray-100 appearance-none w-full px-4 py-3 pt-5 pb-2 focus focus:border-orange-500 focus:outline-none active:outline-none active:border-orange-500"
@@ -98,7 +102,7 @@ const AddListModalContent: React.FC<{
           ))}
         </div>
       </div>
-      <div className="text-lg w-8/12 flex items-center justify-between mt-2 px-2">
+      <div className="text-lg w-8/12 flex items-center justify-between mt-4 px-2">
         <div>
           <Button
             className="text-orange-500 whitespace-no-wrap"

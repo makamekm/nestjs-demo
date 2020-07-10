@@ -1,11 +1,21 @@
 .table-row {
-  transition: background 0.2s ease-out, opacity 0.2s ease-out;
-  cursor: pointer;
-
   & > td {
     border-top: inherit;
     border-top-width: 1px;
   }
+}
+
+.table-row-alt {
+  &:nth-child(even) {
+    & > td {
+      background: #f1f1f1;
+    }
+  }
+}
+
+.table-row {
+  transition: background 0.2s ease-out, opacity 0.2s ease-out;
+  cursor: pointer;
 
   & > td:first-child {
     transition: color 0.2s ease-out;
@@ -34,18 +44,5 @@
   &:active {
     user-select: none;
     opacity: 0.7;
-  }
-}
-
-.table-row-alt {
-  & > td {
-    border-top: inherit;
-    border-top-width: 1px;
-  }
-
-  &:nth-child(even) {
-    & > td {
-      background: #f1f1f1;
-    }
   }
 }
