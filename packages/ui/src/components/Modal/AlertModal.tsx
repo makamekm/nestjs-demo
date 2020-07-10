@@ -4,7 +4,7 @@ import FocusTrap from "focus-trap-react";
 import { Modal } from "./Modal";
 import { useKeyPress } from "~/hooks";
 
-const AlertModalContent: React.FC<{
+export const AlertModalContent: React.FC<{
   accept: () => void;
   close: () => void;
   title: any;
@@ -28,7 +28,7 @@ const AlertModalContent: React.FC<{
         <div className="flex-1 mt-6 -mx-2 -mb-2 flex flex-row flex-wrap items-center justify-around w-full">
           <button
             className={
-              "accept text-lg font-semibold py-3 px-6 m-3 rounded-lg bg-red-600 dark-mode:bg-red-600 active:bg-red-700 text-white hover:text-white focus:outline-none focus:shadow-outline"
+              "accept text-lg font-semibold py-3 px-6 m-3 rounded-lg bg-red-600 dark-mode:bg-red-600 active:bg-red-700 text-white hover:text-white rounded focus:outline-none focus:shadow-outline"
             }
             onClick={onAccept}
           >

@@ -9,6 +9,7 @@ import { useKeyPress } from "~/hooks";
 export const Modal: React.FC<{
   className?: string;
   focusEl?: string;
+  isOpen?: boolean;
   children?: (props: {
     open: () => void;
     close: () => void;
@@ -19,7 +20,7 @@ export const Modal: React.FC<{
     close: () => void;
     isOpen: boolean;
   }) => JSX.Element;
-}> = observer(({ content, children, className, focusEl }) => {
+}> = observer(({ content, isOpen, children, className, focusEl }) => {
   const service = React.useContext(LayoutService);
   const ref = React.useRef<HTMLDivElement>(null);
   const state = useLocalStore(() => ({
@@ -27,7 +28,6 @@ export const Modal: React.FC<{
   }));
   const open = React.useCallback(() => {
     state.isOpen = true;
-    service.nonScrollableStack++;
     setTimeout(() => {
       if (focusEl && ref.current) {
         const element = Array.from(ref.current.querySelectorAll(focusEl))[0];
@@ -40,13 +40,12 @@ export const Modal: React.FC<{
         ref.current.focus();
       }
     }, 100);
-  }, [state, service, focusEl]);
+  }, [state, focusEl]);
   const close = React.useCallback(() => {
     if (state.isOpen) {
       state.isOpen = false;
-      service.nonScrollableStack--;
     }
-  }, [state, service]);
+  }, [state]);
   const closeBackdrop = React.useCallback(
     (e) => {
       if (ref.current && e.target && ref.current === e.target) {
@@ -63,14 +62,17 @@ export const Modal: React.FC<{
       close();
     }
   });
+  const isOpenState = isOpen || state.isOpen;
   React.useEffect(() => {
     return () => {
-      if (state.isOpen) {
+      if (isOpenState) {
+        service.nonScrollableStack++;
+      } else {
         service.nonScrollableStack--;
       }
     };
-  }, [state, service]);
-  const transitions = useTransition(state.isOpen, null, {
+  }, [isOpenState, service]);
+  const transitions = useTransition(isOpenState, null, {
     config: {
       duration: 100,
     },
@@ -102,7 +104,7 @@ export const Modal: React.FC<{
       right: 0,
     },
   });
-  const innerTransitions = useTransition(state.isOpen, null, {
+  const innerTransitions = useTransition(isOpenState, null, {
     config: {
       duration: 100,
     },
@@ -112,7 +114,7 @@ export const Modal: React.FC<{
     enter: { transform: "scale(1)" },
     leave: { transform: "scale(0.9)" },
   });
-  const controller = { open, close, isOpen: state.isOpen };
+  const controller = { open, close, isOpen: isOpenState };
   return (
     <>
       {!!children && children(controller)}
