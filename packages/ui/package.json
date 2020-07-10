@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "cross-env ENV=dev run-p build-tailwind start:app start:worker",
-    "start:app": "cross-env PORT=8000 react-app-rewired start",
+    "start:app": "cross-env PORT=8000 BROWSER=none react-app-rewired start",
     "start:worker": "nodemon --watch src -e js --exec \"npm run dev:worker\"",
     "dev:worker": "cra-append-sw --mode dev ./src/custom-service-worker.js",
     "build": "cross-env ENV=prod run-s build-tailwind build:app build:worker",

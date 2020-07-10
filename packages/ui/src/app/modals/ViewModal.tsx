@@ -22,7 +22,7 @@ const ViewModalContent: React.FC<{
         </Button>
       </div>
       <div className="text-2xl -mt-6 font-medium">{data.name}</div>
-      <div className="text-lg w-full flex items-center justify-center mt-2">
+      <div className="text-lg w-full flex items-center justify-center mt-4">
         <div className="text-gray-700 px-3">Date</div>
         <div className="text-gray-900 px-3 font-medium -ml-2">
           {moment(data.date).format("YYYY-MM-DD")}
@@ -32,7 +32,7 @@ const ViewModalContent: React.FC<{
           {data.contacts.length}
         </div>
       </div>
-      <div className="w-full px-4 mt-2">
+      <div className="w-full px-4 mt-4">
         <div className="table-overflow">
           <table className="w-full">
             <tbody>
