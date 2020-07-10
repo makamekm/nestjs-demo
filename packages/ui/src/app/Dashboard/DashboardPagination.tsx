@@ -12,7 +12,7 @@ export const DashboardPagination = observer(() => {
       <div className="flex flex-row items-center justify-center mt-8">
         {state.pagesArray.map((value, index) => (
           <Button
-            className={classNames("bg-white mx-1", {
+            className={classNames("bg-white mx-1 static", {
               "pointer-events-none": value == null || state.page === value,
               "text-gray-800": state.page !== value,
               "text-orange-500": state.page === value,
