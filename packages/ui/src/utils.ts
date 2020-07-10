@@ -1,17 +1,24 @@
 export class HotPromise<T = void> extends Promise<T> {
-  resolve: () => void;
+  resolve: (value: T) => void;
+  reject: (error: Error) => void;
   isResolved: boolean;
 }
 
 export const createHotPromise = <T = void>() => {
   let resolve;
-  const promise = new HotPromise<T>((r) => {
+  let reject;
+  const promise = new HotPromise<T>((r, e) => {
     resolve = (...args) => {
       promise.isResolved = true;
       r(...args);
     };
+    reject = (...args) => {
+      promise.isResolved = true;
+      e(...args);
+    };
   });
   promise.resolve = resolve;
+  promise.reject = reject;
   return promise;
 };
 
