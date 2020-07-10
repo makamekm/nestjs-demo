@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "prebuild": "rimraf ./packages/api/public",
-    "build": "run-s bootstrap prebuild build:packages build:dist",
+    "clean": "rimraf ./packages/api/public",
+    "build": "run-s bootstrap clean build:packages build:dist",
     "build:packages": "lerna run build --stream",
     "build:dist": "ncp ./packages/ui/build ./packages/api/public",
     "start": "lerna run start:prod --stream",
