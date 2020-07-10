@@ -68,7 +68,7 @@ export const ListService = createService(
           state.data = json.data.map(state.remapListResponseItem);
         } catch (error) {
           console.error(error);
-          toast("There was an error whilte creating a list", {
+          toast("There was an error while loading data", {
             type: "error",
           });
         }

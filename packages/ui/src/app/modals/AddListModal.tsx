@@ -37,7 +37,7 @@ const AddListModalContent: React.FC<{
         });
       } catch (error) {
         console.error(error);
-        toast("There was an error whilte creating a list", {
+        toast("There was an error while creating a list", {
           type: "error",
         });
       }
