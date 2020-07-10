@@ -2,8 +2,8 @@ import React from "react";
 import { useSpring } from "react-spring";
 import classNames from "classnames";
 import { XFocusableContext, YFocusableContext } from "./XFocusableContext";
-import { Focusable } from "../Focusable/Focusable";
-import { FocusableContext } from "../Focusable/FocusableContext";
+import { Focusable } from "./Focusable";
+import { FocusableContext } from "./FocusableContext";
 import { observer, useLocalStore } from "mobx-react";
 import { useOnChange } from "~/hooks";
 

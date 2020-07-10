@@ -563,7 +563,7 @@ export const Typeahead: React.FC<{
             item && (
               <animated.div key={key} style={props}>
                 <div
-                  className="no-print shadow-lg border left-0 right-0 w-full my-1 origin-top-right bg-white dark-mode:border-gray-700 dark-mode:bg-gray-900 w-full min-w-64 rounded overflow-y-auto"
+                  className="no-print shadow-lg border left-0 right-0 w-full my-1 origin-top-right bg-white dark-mode:border-gray-700 dark-mode:bg-gray-900 min-w-64 rounded overflow-y-auto"
                   style={{ maxHeight: "300px" }}
                 >
                   <div className="flex flex-col w-full">

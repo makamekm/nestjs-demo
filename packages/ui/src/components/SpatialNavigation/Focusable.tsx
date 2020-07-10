@@ -1,7 +1,7 @@
 import React from "react";
 import { FocusableContext } from "./FocusableContext";
 import { observer, useLocalStore } from "mobx-react";
-import { FocusableElement } from "../SpatialNavigation/SpatialNavigation";
+import { FocusableElement } from "./SpatialNavigation";
 
 export const Focusable: React.FC<{
   onFocus?: (e) => void;
