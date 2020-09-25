@@ -9,6 +9,8 @@ import { DB_CONFIG } from '@env/config';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: path.resolve('./public'),
+      renderPath: '/',
+      exclude: ['/v1/*'],
     }),
     TypeOrmModule.forRoot(DB_CONFIG),
     DomainModule,
