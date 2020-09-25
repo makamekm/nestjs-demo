@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocalStore } from "mobx-react";
 import { toast } from "react-toastify";
-import { createService } from "~/components/ServiceProvider/ServiceProvider";
+import { createService } from "react-service-provider";
 import {
   LoadingService,
   LoadingStore,

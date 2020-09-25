@@ -8,6 +8,7 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
   database: path.resolve('./database.sqlite'),
   entities: [path.resolve('./') + '/src/**/*.entity{.ts,.js}'],
   synchronize: true,
+  keepConnectionAlive: true,
 };
 export const MS_CONFIG: TcpOptions = {
   transport: Transport.TCP,

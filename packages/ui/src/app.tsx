@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  ServiceProviderFactory,
-  ServiceProviderHook,
-} from "./components/ServiceProvider/ServiceProvider";
+import { useServiceProvider } from "react-service-provider";
 import { HashRouter as Router } from "react-router-dom";
 import { RoutedContent } from "./routing";
 
@@ -15,8 +12,10 @@ import { ListService } from "./app/services/ListService";
 const basePath = process.env.BASE_PATH || "/";
 
 export const App = () => {
-  const [ServiceProvider] = React.useState<React.FC>(() =>
-    ServiceProviderFactory(LoadingService, LayoutService, ListService)
+  const [ServiceProvider, ServiceProviderHook] = useServiceProvider(
+    LoadingService,
+    LayoutService,
+    ListService
   );
 
   return (
