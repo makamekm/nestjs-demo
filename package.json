@@ -11,7 +11,7 @@
     "start": "lerna run start:prod --stream",
     "start:build": "run-s build start",
     "fix": "lerna run fix --stream",
-    "test": "lerna run test --stream",
+    "test": "lerna exec npm run test --concurrency 1",
     "dev": "cross-env CI=true lerna run start --stream",
     "commit": "cz",
     "semantic-release": "semantic-release"
@@ -30,9 +30,7 @@
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/npm": "^7.0.6",
-    "@semantic-release/release-notes-generator": "^9.0.1",
-    "eslint": "^7.9.0",
-    "prettier": "^2.1.2"
+    "@semantic-release/release-notes-generator": "^9.0.1"
   },
   "husky": {
     "hooks": {

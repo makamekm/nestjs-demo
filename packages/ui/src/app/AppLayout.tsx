@@ -9,7 +9,6 @@ import { AddListModal } from "./modals/AddListModal";
 export const AppLayout: React.FC = observer(({ children }) => {
   const history = useHistory();
   const service = React.useContext(LayoutService);
-  const scrollable = service.scrollable && service.nonScrollableStack === 0;
   return (
     <>
       <ToastContainer
@@ -66,8 +65,8 @@ export const AppLayout: React.FC = observer(({ children }) => {
         </div>
         <style jsx>{`
           :global(body) {
-            max-height: ${scrollable ? "unset" : "100vh"};
-            overflow-y: ${scrollable ? "visible" : "hidden"};
+            max-height: ${service.scrollable ? "unset" : "100vh"};
+            overflow-y: ${service.scrollable ? "visible" : "hidden"};
           }
         `}</style>
       </div>

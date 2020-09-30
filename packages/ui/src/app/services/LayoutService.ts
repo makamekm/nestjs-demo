@@ -6,13 +6,12 @@ import { focusFocusable } from "~/components/SpatialNavigation/SpatialNavigation
 
 const defaultState = {
   empty: false,
-  scrollable: true,
+  scrollable: true
 };
 
 export interface LayoutConfig {
   empty?: boolean;
   scrollable?: boolean;
-  nonScrollableStack?: number;
 }
 
 function closeFullscreen() {
@@ -42,7 +41,6 @@ function openFullscreen() {
 export const LayoutService = createService(
   () => {
     const state = useLocalStore(() => ({
-      nonScrollableStack: 0,
       ...defaultState,
       isFullscreen: false,
       checkFullscreen: () => {
@@ -66,16 +64,16 @@ export const LayoutService = createService(
       change: (config: LayoutConfig) => {
         const newObj = {
           ...defaultState,
-          ...config,
+          ...config
         };
         for (const key in newObj) {
           state[key] = newObj[key];
         }
-      },
+      }
     }));
     return state;
   },
-  (state) => {
+  state => {
     document.addEventListener("webkitfullscreenchange", state.checkFullscreen);
     document.addEventListener("mozfullscreenchange", state.checkFullscreen);
     document.addEventListener("fullscreenchange", state.checkFullscreen);
@@ -86,7 +84,7 @@ export const LayoutService = createService(
 export const useLayoutConfig = (config: LayoutConfig) => {
   const service = React.useContext(LayoutService);
   const [storage] = React.useState(() => ({
-    config: null,
+    config: null
   }));
   React.useEffect(() => {
     const areObjsDifferent =

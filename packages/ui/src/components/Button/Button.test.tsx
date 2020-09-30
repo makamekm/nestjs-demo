@@ -10,11 +10,11 @@ test("render HELLO in Button", () => {
 });
 
 test("click on Button", async () => {
-  const primise = createHotPromise();
+  const promise = createHotPromise();
   const { getByText } = render(
     <Button
       onClickEnter={() => {
-        primise.resolve();
+        promise.resolve();
       }}
     >
       This
@@ -24,9 +24,9 @@ test("click on Button", async () => {
     getByText("This"),
     new MouseEvent("click", {
       bubbles: true,
-      cancelable: true,
+      cancelable: true
     })
   );
-  await primise;
-  expect(primise).toBeDefined();
+  await promise;
+  expect(promise).toBeDefined();
 });
