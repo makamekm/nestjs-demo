@@ -1,21 +1,20 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import * as path from 'path';
-import { DomainModule } from './modules/domain/domain.module';
-import { DB_CONFIG } from '@env/config';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { DomainModule } from "./modules/domain/domain.module";
+import { DB_CONFIG, PUBLIC_FOLDER } from "@env/config";
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: path.resolve('./public'),
-      renderPath: '/',
-      exclude: ['/v1/*'],
+      rootPath: PUBLIC_FOLDER,
+      renderPath: "/",
+      exclude: ["/v1/*"]
     }),
     TypeOrmModule.forRoot(DB_CONFIG),
-    DomainModule,
+    DomainModule
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
 export class AppModule {}

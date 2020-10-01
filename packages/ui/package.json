@@ -47,6 +47,7 @@
     "start:app": "cross-env PORT=8000 BROWSER=none react-app-rewired start",
     "start:worker": "nodemon --watch src -e js --exec \"npm run dev:worker\"",
     "dev:worker": "cra-append-sw --mode dev ./src/custom-service-worker.js",
+    "clean": "rimraf build",
     "build": "cross-env ENV=prod run-s build-tailwind build:app build:worker",
     "build:app": "react-app-rewired build",
     "build:worker": "cra-append-sw ./src/custom-service-worker.js",
@@ -85,7 +86,8 @@
     "react-app-rewired": "^2.1.6",
     "styled-jsx": "^3.3.0",
     "tailwindcss": "^1.8.10",
-    "lint-staged": "^10.4.0"
+    "lint-staged": "^10.4.0",
+    "rimraf": "^3.0.2"
   },
   "lint-staged": {
     "*.{tsx,ts}": [
