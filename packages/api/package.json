@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nodemon --watch src -e ts --exec \"npm run start:dev || exit 1\"",
     "start:dev": "cross-env ENV=dev node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
-    "start:prod": "cross-env ENV=prod node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
+    "start:prod": "node ./dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "test": "jest",
@@ -21,7 +21,7 @@
     "test:debug": "node --inspect-brk -r ./tsconfig-paths-bootstrap.js -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "precommit": "lint-staged",
-    "pkg": "pkg ./dist/main.js --targets node12-macos-x64 --config package.json"
+    "pkg": "pkg ./dist/main.js --targets node12-macos-x64 --config package.json --output ./demo-nest-api"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
@@ -97,7 +97,6 @@
       "dist/**/*.js"
     ],
     "assets": [
-      "node_nodules/**/*",
       "dist/**/*.js.map",
       "public/**/*"
     ]

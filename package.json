@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "clean": "rimraf ./packages/api/public",
+    "clean": "rimraf ./packages/api/public dist",
     "build": "run-s bootstrap build:prebuild clean build:packages build:combine build:pkg build:cp-dist",
     "build:pkg": "lerna run pkg --stream",
     "build:cp-dist": "run-s build:cp-dist:demo-nest-api",
@@ -13,7 +13,7 @@
     "build:packages": "lerna run build --stream",
     "build:combine": "ncp ./packages/ui/build ./packages/api/public",
     "start": "lerna run start:prod --stream",
-    "start:build": "run-s build start",
+    "build-and-start": "run-s build start",
     "test": "lerna exec npm run test --concurrency 1",
     "lint": "lerna run lint --stream --concurrency 1",
     "lint:fix": "lerna run lint:fix --stream --concurrency 1",
