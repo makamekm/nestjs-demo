@@ -13,6 +13,7 @@
     "start:dev": "cross-env ENV=dev node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
     "start:prod": "cross-env ENV=prod node -r ./tsconfig-paths-bootstrap.js -r ts-node/register ./src/main.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

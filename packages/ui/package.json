@@ -51,7 +51,10 @@
     "build:app": "react-app-rewired build",
     "build:worker": "cra-append-sw ./src/custom-service-worker.js",
     "build-tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.generated.css",
+    "lint": "eslint \"{src,test}/**/*.{tsx,ts,js,jsx}\"",
+    "lint:fix": "eslint \"{src,test}/**/*.{tsx,ts,js,jsx}\"",
     "test": "cross-env ENV=web CI=true react-app-rewired test --no-watch --ci",
+    "test:watch": "cross-env ENV=web react-app-rewired test --watch",
     "eject": "react-app-rewired eject",
     "figma": "node ./figma.js",
     "precommit": "lint-staged"
