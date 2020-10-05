@@ -25,20 +25,20 @@ const AddListModalContent: React.FC<{
           method: "POST",
           body: JSON.stringify({
             name: state.name,
-            urls: state.urls,
+            urls: state.urls
           }),
           headers: {
-            "Content-Type": "application/json",
-          },
+            "Content-Type": "application/json"
+          }
         });
         close();
         toast("The list have been successfuly created!", {
-          type: "success",
+          type: "success"
         });
       } catch (error) {
         console.error(error);
         toast("There was an error while creating a list", {
-          type: "error",
+          type: "error"
         });
       }
       listService.load();
@@ -50,26 +50,26 @@ const AddListModalContent: React.FC<{
     clear: () => {
       state.name = "";
       (state.urls as any).replace([""]);
-    },
+    }
   }));
   useKeyPress("Escape", () => {
     close();
   });
   return (
-    <div className="window rounded-lg shadow-md bg-white flex flex-col items-center justify-start pb-8">
+    <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 rounded-lg shadow-md bg-white flex flex-col items-center justify-start pb-8">
       <div className="w-full flex items-center justify-end px-3 py-3">
         <Button onClickEnter={close}>
           <CloseIcon />
         </Button>
       </div>
       <div className="text-2xl -mt-6 font-medium">New Upload List</div>
-      <div className="text-lg flex items-center justify-center mt-6 px-2 w-8/12">
+      <div className="text-lg flex items-center justify-center mt-6 px-2 w-10/12 lg:w-8/12 xl:w-8/12">
         <div className="relative w-full">
           <input
             placeholder=" "
             className="input border-gray-400 border-2 bg-gray-100 appearance-none w-full px-4 py-3 pt-5 pb-2 focus focus:border-orange-500 focus:outline-none active:outline-none active:border-orange-500"
             type="text"
-            onChange={(e) => {
+            onChange={e => {
               state.name = e.currentTarget.value;
             }}
             value={state.name || ""}
@@ -79,7 +79,7 @@ const AddListModalContent: React.FC<{
           </label>
         </div>
       </div>
-      <div className="w-8/12 mt-4">
+      <div className="w-10/12 lg:w-8/12 xl:w-8/12 mt-4">
         <div className="table-overflow w-full px-2 flex flex-col items-center justify-start">
           {state.urls.map((value, index) => (
             <div
@@ -90,7 +90,7 @@ const AddListModalContent: React.FC<{
                 placeholder=" "
                 className="input border-gray-400 border-2 bg-gray-100 appearance-none w-full px-4 py-3 pt-5 pb-2 focus focus:border-orange-500 focus:outline-none active:outline-none active:border-orange-500"
                 type="text"
-                onChange={(e) => {
+                onChange={e => {
                   state.urls[index] = e.currentTarget.value;
                 }}
                 value={value || ""}
@@ -102,7 +102,7 @@ const AddListModalContent: React.FC<{
           ))}
         </div>
       </div>
-      <div className="text-lg w-8/12 flex items-center justify-between mt-4 px-2">
+      <div className="text-lg w-10/12 lg:w-8/12 xl:w-8/12 flex items-center justify-between flex-wrap mt-4 px-2">
         <div>
           <Button
             className="text-orange-500 whitespace-no-wrap"
@@ -120,7 +120,7 @@ const AddListModalContent: React.FC<{
           </Button>
         </div>
       </div>
-      <div className="text-lg w-8/12 mt-4 px-2">
+      <div className="text-lg w-10/12 lg:w-8/12 xl:w-8/12 mt-4 px-2">
         <Button
           className="text-white w-full bg-orange-500 rounded-full"
           onClickEnter={state.send}
@@ -129,10 +129,6 @@ const AddListModalContent: React.FC<{
         </Button>
       </div>
       <style jsx>{`
-        .window {
-          min-width: 30vw;
-        }
-
         .table-overflow {
           max-height: 20vw;
           overflow-x: hidden;

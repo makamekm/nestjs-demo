@@ -68,7 +68,7 @@ export const Modal: React.FC<{
   const transitions = useTransition(isOpenState, null, {
     from: { opacity: 0, top: -50, scale: 0.9 },
     enter: { opacity: 1, top: 0, scale: 1.0 },
-    leave: { opacity: 0, top: 50, scale: 0.9 },
+    leave: { opacity: 0, scale: 0.9 },
     config: config.stiff
   });
 
@@ -97,7 +97,7 @@ export const Modal: React.FC<{
                 }}
                 className={classNames(
                   className,
-                  "modal min-h-screen max-h-screen overflow-y-auto min-w-full flex flex-col items-center xs:p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 focus:outline-none"
+                  "modal overflow-y-auto min-w-full flex flex-col items-center focus:outline-none"
                 )}
               >
                 {!!content && content(controller)}
