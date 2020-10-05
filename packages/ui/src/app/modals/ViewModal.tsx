@@ -15,7 +15,7 @@ const ViewModalContent: React.FC<{
     close();
   });
   return (
-    <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 rounded-lg shadow-md bg-white flex flex-col items-center pb-6">
+    <div className="w-full sm:w-12/12 md:w-12/12 lg:w-10/12 xl:w-9/12 rounded-lg shadow-md bg-white flex flex-col items-center pb-6">
       <div className="w-full flex items-center justify-end px-3 py-3">
         <Button onClickEnter={close}>
           <CloseIcon />
