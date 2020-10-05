@@ -15,7 +15,7 @@ const ViewModalContent: React.FC<{
     close();
   });
   return (
-    <div className="window rounded-lg shadow-md bg-white flex flex-col items-center pb-6">
+    <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 rounded-lg shadow-md bg-white flex flex-col items-center pb-6">
       <div className="w-full flex items-center justify-end px-3 py-3">
         <Button onClickEnter={close}>
           <CloseIcon />
@@ -53,7 +53,7 @@ const ViewModalContent: React.FC<{
                   Confidence
                 </th>
               </tr>
-              {data.contacts.map((contact) => {
+              {data.contacts.map(contact => {
                 return (
                   <tr
                     className="table-row-alt border-gray-300"
@@ -76,10 +76,6 @@ const ViewModalContent: React.FC<{
         </div>
       </div>
       <style jsx>{`
-        .window {
-          min-width: 40vw;
-        }
-
         .table-overflow {
           max-height: 20vw;
           overflow-x: hidden;
