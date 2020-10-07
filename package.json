@@ -18,7 +18,7 @@
     "lint": "lerna run lint --stream --concurrency 1",
     "lint:fix": "lerna run lint:fix --stream --concurrency 1",
     "test:watch": "lerna exec npm run test:watch --parallel",
-    "dev": "cross-env CI=true lerna run start --stream",
+    "dev": "cross-env CI=true lerna run start --stream --parallel",
     "commit": "cz",
     "semantic-release": "semantic-release"
   },
