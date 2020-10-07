@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { Button } from "./Button";
-import { createHotPromise } from "../../utils";
+import { createHotPromise } from "demo-nest-ui-shared";
 
 test("render HELLO in Button", () => {
   const { getByText } = render(<Button>HELLO</Button>);
