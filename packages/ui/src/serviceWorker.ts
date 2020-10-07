@@ -1,7 +1,7 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
-import { createHotPromise } from "./utils";
+import { createHotPromise } from "demo-nest-ui-shared";
 
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
@@ -47,7 +47,7 @@ export async function sendWorkerMessage(message) {
   await getWorkerPromise();
   return new Promise((resolve, reject) => {
     var messageChannel = new MessageChannel();
-    messageChannel.port1.onmessage = (event) => {
+    messageChannel.port1.onmessage = event => {
       if (event.data.error) {
         reject(event.data.error);
       } else {
@@ -60,7 +60,7 @@ export async function sendWorkerMessage(message) {
     // will in turn trigger the onmessage handler on messageChannel.port1.
     // See https://html.spec.whatwg.org/multipage/workers.html#dom-worker-postmessage
     navigator.serviceWorker.controller.postMessage(message, [
-      messageChannel.port2,
+      messageChannel.port2
     ]);
   });
 }
@@ -112,7 +112,7 @@ async function forceSWupdate() {
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
-    .then((registration) => {
+    .then(registration => {
       worker = registration;
       promise.resolve();
       registration.onupdatefound = () => {
@@ -150,7 +150,7 @@ function registerValidSW(swUrl: string, config?: Config) {
         };
       };
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Error during service worker registration:", error);
     });
 }
@@ -158,9 +158,9 @@ function registerValidSW(swUrl: string, config?: Config) {
 function checkValidServiceWorker(swUrl: string, config?: Config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
-    headers: { "Service-Worker": "script" },
+    headers: { "Service-Worker": "script" }
   })
-    .then((response) => {
+    .then(response => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get("content-type");
       if (
@@ -168,7 +168,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
         (contentType != null && contentType.indexOf("javascript") === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then((registration) => {
+        navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -188,10 +188,10 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready
-      .then((registration) => {
+      .then(registration => {
         registration.unregister();
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error.message);
       });
   }

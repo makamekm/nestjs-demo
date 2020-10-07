@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useTransition, animated } from "react-spring";
 import { observer, useLocalStore } from "mobx-react";
-import { useSimpleSyncLocalStorage } from "~/hooks";
+import { useSimpleSyncLocalStorage } from "demo-nest-ui-shared";
 
 export const Accordion: React.FC<{
   className?: string;
@@ -12,7 +12,7 @@ export const Accordion: React.FC<{
 }> = observer(
   ({ children, className, initialOpen, title, syncStorageName }) => {
     const state = useLocalStore(() => ({
-      isOpen: initialOpen,
+      isOpen: initialOpen
     }));
     useSimpleSyncLocalStorage(
       state,
@@ -26,14 +26,14 @@ export const Accordion: React.FC<{
     }, [state]);
     const transitions = useTransition(state.isOpen, null, {
       config: {
-        duration: 100,
+        duration: 100
       },
       from: {
         opacity: 0,
-        transform: "scale(0.99)",
+        transform: "scale(0.99)"
       },
       enter: { opacity: 1, transform: "scale(1)" },
-      leave: { opacity: 0, transform: "scale(0.99)" },
+      leave: { opacity: 0, transform: "scale(0.99)" }
     });
     return (
       <div

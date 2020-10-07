@@ -1,6 +1,6 @@
 import { useLocalStore } from "mobx-react";
 import { createService } from "react-service-provider";
-import { useOnLoad, useOnChange } from "~/hooks";
+import { useOnLoad, useOnChange } from "demo-nest-ui-shared";
 
 export interface LoadingStore {
   inited: boolean;
@@ -26,7 +26,7 @@ export const LoadingService = createService<LoadingStore>(
     const store = useLocalStore<LoadingStore>(() => ({
       inited: false,
       loaders: {
-        initial: true,
+        initial: true
       },
       get isLoading() {
         return Object.keys(store.loaders).length > 0;
@@ -36,11 +36,11 @@ export const LoadingService = createService<LoadingStore>(
         if (!value) {
           delete store.loaders[name];
         }
-      },
+      }
     }));
     return store;
   },
-  (state) => {
+  state => {
     useOnLoad(() => {
       removeLoadingHandler();
     });

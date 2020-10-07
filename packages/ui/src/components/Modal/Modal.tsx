@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { observer, useLocalStore } from "mobx-react";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 import "@reach/dialog/styles.css";
-import { useKeyPress } from "~/hooks";
+import { useKeyPress } from "demo-nest-ui-shared";
 
 export const Modal: React.FC<{
   className?: string;

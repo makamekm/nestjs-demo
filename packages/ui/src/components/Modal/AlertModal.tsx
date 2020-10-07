@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import FocusTrap from "focus-trap-react";
 import { Modal } from "./Modal";
-import { useKeyPress } from "~/hooks";
+import { useKeyPress } from "demo-nest-ui-shared";
 
 export const AlertModalContent: React.FC<{
   accept: () => void;

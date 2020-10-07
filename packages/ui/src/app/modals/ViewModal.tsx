@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { observer } from "mobx-react";
-import { useKeyPress } from "~/hooks";
+import { useKeyPress } from "demo-nest-ui-shared";
 import { Modal } from "~/components/Modal/Modal";
 import { Button } from "~/components/Button/Button";
 import { IList } from "~/app/models/list.interface";

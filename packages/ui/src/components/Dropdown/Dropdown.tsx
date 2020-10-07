@@ -2,7 +2,7 @@ import React from "react";
 import { useTransition, animated } from "react-spring";
 import classNames from "classnames";
 import { observer, useLocalStore } from "mobx-react";
-import { useClickOutside } from "~/hooks";
+import { useClickOutside } from "demo-nest-ui-shared";
 
 export const Dropdown: React.FC<{
   className?: string;
@@ -12,7 +12,7 @@ export const Dropdown: React.FC<{
   const state = useLocalStore(() => ({
     isOpen: false,
     isAnimation: false,
-    timeout: null as number,
+    timeout: null as number
   }));
   const open = React.useCallback(() => {
     if (!state.isOpen) {
@@ -35,16 +35,16 @@ export const Dropdown: React.FC<{
   useClickOutside(ref, tryToCloseTimeout);
   const transitions = useTransition(state.isOpen, null, {
     config: {
-      duration: 100,
+      duration: 100
     },
     from: {
       position: "absolute",
       opacity: 0,
       transform: "scale(0.9)",
-      right: 0,
+      right: 0
     },
     enter: { opacity: 1, transform: "scale(1)", right: 0 },
-    leave: { opacity: 0, transform: "scale(0.9)", right: 0 },
+    leave: { opacity: 0, transform: "scale(0.9)", right: 0 }
   });
   return (
     <div
@@ -52,7 +52,7 @@ export const Dropdown: React.FC<{
       className={classNames(className, "relative", {
         "z-10": !state.isOpen,
         "z-20": state.isAnimation,
-        "z-30": state.isOpen,
+        "z-30": state.isOpen
       })}
       onMouseLeave={tryToCloseTimeout}
     >

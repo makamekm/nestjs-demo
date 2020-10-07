@@ -30,7 +30,7 @@ export const useDelay: <T>(
   delay?: number
 ) => void = (state, name, newName, delay = 200) => {
   React.useEffect(() => {
-    const setValue = debounce(value => (state[newName] = value), delay);
+    const setValue = debounce((value) => (state[newName] = value), delay);
     return autorun(() => {
       setValue(state[name]);
     });
@@ -44,7 +44,7 @@ export const useOnChange: <T, K extends keyof T>(
   delay?: number
 ) => void = (state, name, fn, delay = 100) => {
   React.useEffect(() => {
-    (delay ? debounce(value => fn(value), delay) : value => fn(value))(
+    (delay ? debounce((value) => fn(value), delay) : (value) => fn(value))(
       state[name]
     );
     return reaction(
@@ -54,7 +54,7 @@ export const useOnChange: <T, K extends keyof T>(
   }, [state, name, fn, delay]);
 };
 
-export const useOnLoad: <T>(fn: () => any, delay?: number) => void = (
+export const useOnLoad: (fn: () => any, delay?: number) => void = (
   fn,
   delay = 0
 ) => {
@@ -224,7 +224,7 @@ export function useClickOutside(ref, fn) {
 
 export function useKeyPress(targetKey, down?, up?) {
   const downHandler = React.useCallback(
-    e => {
+    (e) => {
       if (e.key === targetKey) {
         down && down(e);
       }
@@ -233,7 +233,7 @@ export function useKeyPress(targetKey, down?, up?) {
   );
 
   const upHandler = React.useCallback(
-    e => {
+    (e) => {
       if (e.key === targetKey) {
         up && up(e);
       }

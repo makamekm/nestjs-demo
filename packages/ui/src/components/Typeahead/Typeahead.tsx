@@ -4,7 +4,7 @@ import Highlighter from "react-highlight-words";
 import classNames from "classnames";
 import { useLocalStore, observer } from "mobx-react";
 import { isEqual } from "lodash";
-import { useClickOutside, useKeyPress, useDelay } from "~/hooks";
+import { useClickOutside, useKeyPress, useDelay } from "demo-nest-ui-shared";
 
 const LIMIT = 15;
 
@@ -52,7 +52,7 @@ export const Typeahead: React.FC<{
     options,
     showSelected,
     minQuery,
-    allowNew,
+    allowNew
   }) => {
     const selectedRef = React.useRef<HTMLDivElement>(null);
     const ref = React.useRef<HTMLDivElement>(null);
@@ -71,7 +71,7 @@ export const Typeahead: React.FC<{
       get options() {
         let length = 0;
         const optionsStr: string[] = (state.cacheOptions.filter(
-          (s) =>
+          s =>
             typeof s === "string" &&
             ((!showSelected && !selected.includes(s)) || showSelected) &&
             s.toLowerCase().includes(state.query.toLowerCase())
@@ -80,10 +80,10 @@ export const Typeahead: React.FC<{
         const optionsGroups: {
           label: string;
           values: string[];
-        }[] = (state.cacheOptions.filter((s) => typeof s !== "string") as any[])
-          .map((g) => {
+        }[] = (state.cacheOptions.filter(s => typeof s !== "string") as any[])
+          .map(g => {
             let values = g.values.filter(
-              (s) =>
+              s =>
                 ((!showSelected && !selected.includes(s)) || showSelected) &&
                 s.toLowerCase().includes(state.query.toLowerCase())
             );
@@ -91,27 +91,27 @@ export const Typeahead: React.FC<{
             length += values.length;
             return {
               ...g,
-              values,
+              values
             };
           })
-          .filter((g) => g.values.length > 0);
+          .filter(g => g.values.length > 0);
         const optionsGroupsReduced = optionsGroups.reduce((arr, group) => {
           arr.push({
             key: "_g_" + group.label,
-            label: group.label,
+            label: group.label
           });
-          group.values.forEach((item) => {
+          group.values.forEach(item => {
             arr.push({
               key: "_g_" + group.label + "__" + item,
               value: item,
-              group,
+              group
             });
           });
           return arr;
         }, []);
         return {
           strings: optionsStr,
-          groups: optionsGroupsReduced,
+          groups: optionsGroupsReduced
         };
       },
       get hasNew() {
@@ -120,10 +120,10 @@ export const Typeahead: React.FC<{
           !!state.query &&
           !selected.includes(state.query) &&
           !state.options.strings.find(
-            (s) => s.toLowerCase() === state.query.toLowerCase()
+            s => s.toLowerCase() === state.query.toLowerCase()
           ) &&
           !state.options.groups.find(
-            (s) => s.value.toLowerCase() === state.query.toLowerCase()
+            s => s.value.toLowerCase() === state.query.toLowerCase()
           )
         );
       },
@@ -135,7 +135,7 @@ export const Typeahead: React.FC<{
             state.options.groups.length > 0 ||
             state.hasNew)
         );
-      },
+      }
     }));
     React.useEffect(() => {
       if (!isEqual(options, state.cacheOptions)) {
@@ -165,7 +165,7 @@ export const Typeahead: React.FC<{
     }, [tryToClose]);
     useClickOutside(ref, tryToCloseTimeout);
     const onEnterInput = React.useCallback(
-      (e) => {
+      e => {
         if (e.key === "Backspace") {
           if (selected.length > 0 && !state.query) {
             onChange(selected.slice(0, selected.length - 1));
@@ -182,7 +182,7 @@ export const Typeahead: React.FC<{
       },
       [onChange, state, selected]
     );
-    useKeyPress("ArrowUp", (e) => {
+    useKeyPress("ArrowUp", e => {
       if (
         document.activeElement &&
         ref.current &&
@@ -192,7 +192,7 @@ export const Typeahead: React.FC<{
         const elements = Array.from(
           ref.current.querySelectorAll("button.item")
         ).reverse();
-        let element = elements.find((element) => {
+        let element = elements.find(element => {
           if (element === document.activeElement) {
             cursor = true;
             return false;
@@ -208,7 +208,7 @@ export const Typeahead: React.FC<{
         }
       }
     });
-    useKeyPress("ArrowDown", (e) => {
+    useKeyPress("ArrowDown", e => {
       if (
         document.activeElement &&
         ref.current &&
@@ -218,7 +218,7 @@ export const Typeahead: React.FC<{
         const elements = Array.from(
           ref.current.querySelectorAll("button.item")
         );
-        let element = elements.find((element) => {
+        let element = elements.find(element => {
           if (element === document.activeElement) {
             cursor = true;
             return false;
@@ -249,7 +249,7 @@ export const Typeahead: React.FC<{
     );
     const transitions = useTransition(state.isOpenCalc, null, {
       config: {
-        duration: 100,
+        duration: 100
       },
       from: {
         position: "absolute",
@@ -257,106 +257,106 @@ export const Typeahead: React.FC<{
         transform: "scale(0.9)",
         right: 0,
         left: 0,
-        top: "100%",
+        top: "100%"
       },
       enter: {
         opacity: 1,
         transform: "scale(1)",
         right: 0,
         left: 0,
-        top: "100%",
+        top: "100%"
       },
       leave: {
         opacity: 0,
         transform: "scale(0.9)",
         right: 0,
         left: 0,
-        top: "100%",
-      },
+        top: "100%"
+      }
     });
     const hasSelectionTransitions = useTransition(selected.length > 0, null, {
       config: {
-        duration: 100,
+        duration: 100
       },
       from: {
         opacity: 0,
-        transform: "scale(0.9)",
+        transform: "scale(0.9)"
       },
       enter: {
         opacity: 1,
-        transform: "scale(1)",
+        transform: "scale(1)"
       },
       leave: {
         opacity: 0,
-        transform: "scale(0.9)",
-      },
+        transform: "scale(0.9)"
+      }
     });
-    const selectedTransitions = useTransition(selected, (item) => item, {
-      config: (item) =>
+    const selectedTransitions = useTransition(selected, item => item, {
+      config: item =>
         !selected.includes(item)
           ? { duration: 0 }
           : {
-              duration: 100,
+              duration: 100
             },
       from: {
         opacity: 0,
-        transform: "scale(0.9)",
+        transform: "scale(0.9)"
       },
       enter: {
         opacity: 1,
-        transform: "scale(1)",
+        transform: "scale(1)"
       },
       leave: {
         opacity: 0,
-        transform: "scale(0.9)",
-      },
+        transform: "scale(0.9)"
+      }
     });
     const optionsStrTransitions = useTransition(
       state.options.strings,
-      (item) => item,
+      item => item,
       {
-        config: (item) =>
+        config: item =>
           !state.options.strings.includes(item)
             ? { duration: 0 }
             : {
-                duration: 100,
+                duration: 100
               },
         from: {
           opacity: 0,
-          transform: "scale(0.9)",
+          transform: "scale(0.9)"
         },
         enter: {
           opacity: 1,
-          transform: "scale(1)",
+          transform: "scale(1)"
         },
         leave: {
           opacity: 0,
-          transform: "scale(0.9)",
-        },
+          transform: "scale(0.9)"
+        }
       }
     );
     const optionsGroupTransitions = useTransition(
       state.options.groups,
-      (item) => item.key,
+      item => item.key,
       {
-        config: (item) =>
+        config: item =>
           !state.options.groups.includes(item)
             ? { duration: 0 }
             : {
-                duration: 100,
+                duration: 100
               },
         from: {
           opacity: 0,
-          transform: "scale(0.9)",
+          transform: "scale(0.9)"
         },
         enter: {
           opacity: 1,
-          transform: "scale(1)",
+          transform: "scale(1)"
         },
         leave: {
           opacity: 0,
-          transform: "scale(0.9)",
-        },
+          transform: "scale(0.9)"
+        }
       }
     );
     const hasNewTransitions = useTransition(state.hasNew, null, {
@@ -364,20 +364,20 @@ export const Typeahead: React.FC<{
         !state.hasNew
           ? { duration: 0 }
           : {
-              duration: 100,
+              duration: 100
             },
       from: {
         opacity: 0,
-        transform: "scale(0.9)",
+        transform: "scale(0.9)"
       },
       enter: {
         opacity: 1,
-        transform: "scale(1)",
+        transform: "scale(1)"
       },
       leave: {
         opacity: 0,
-        transform: "scale(0.9)",
-      },
+        transform: "scale(0.9)"
+      }
     });
     let index = -1;
     return (
@@ -389,7 +389,7 @@ export const Typeahead: React.FC<{
           {
             "z-10": !state.isOpen,
             "z-20": state.isAnimation,
-            "z-30": state.isOpen,
+            "z-30": state.isOpen
           }
         )}
       >
@@ -404,7 +404,7 @@ export const Typeahead: React.FC<{
                   ...props,
                   maxWidth: selectedRef.current
                     ? `${selectedRef.current.clientWidth - 10}px`
-                    : undefined,
+                    : undefined
                 }}
                 key={key}
                 className="flex justify-center items-center max-w-xs m-1 font-medium py-1 px-2 bg-white rounded-full text-gray-700 bg-gray-100 border border-gray-300 dark-mode:border-gray-700 dark-mode:text-gray-300 dark-mode:bg-gray-800"
@@ -416,7 +416,7 @@ export const Typeahead: React.FC<{
                   <div className="-ml-2 flex flex-auto flex-row-reverse">
                     <button
                       onClick={() => {
-                        onChange(selected.filter((s) => s !== item));
+                        onChange(selected.filter(s => s !== item));
                         autoFocus &&
                           refInput.current &&
                           refInput.current.focus();
@@ -465,7 +465,7 @@ export const Typeahead: React.FC<{
                       tryToCloseTimeout();
                     }}
                     value={state.queryReact}
-                    onChange={(e) => {
+                    onChange={e => {
                       state.queryReact = e.currentTarget.value;
                     }}
                     onKeyDown={onEnterInput}
@@ -475,7 +475,7 @@ export const Typeahead: React.FC<{
                       {
                         "pl-10": !!icon,
                         "pl-3 md:pl-2": !icon && selected.length > 0,
-                        "pl-3": !icon && selected.length === 0,
+                        "pl-3": !icon && selected.length === 0
                       }
                     )}
                     style={{ minWidth: "100px", minHeight: "36px" }}
@@ -547,7 +547,7 @@ export const Typeahead: React.FC<{
                     "feather feather-chevron-up w-4 h-4 transition-transform duration-200 transform",
                     {
                       "rotate-180": state.isOpenCalc,
-                      "rotate-0": !state.isOpenCalc,
+                      "rotate-0": !state.isOpenCalc
                     }
                   )}
                 >
@@ -595,7 +595,7 @@ export const Typeahead: React.FC<{
                               className={classNames(
                                 "flex w-full items-center p-2 pl-2 border-transparent border-l-4 relative hover:border-blue-300",
                                 {
-                                  "border-gray-100 bg-gray-100 dark-mode:border-gray-700 dark-mode:bg-gray-700": isHighlitedByEnter(),
+                                  "border-gray-100 bg-gray-100 dark-mode:border-gray-700 dark-mode:bg-gray-700": isHighlitedByEnter()
                                 }
                               )}
                             >
@@ -618,9 +618,9 @@ export const Typeahead: React.FC<{
                           style={props}
                           key={key}
                           onClick={() => {
-                            const index = selected.findIndex((s) => item === s);
+                            const index = selected.findIndex(s => item === s);
                             if (index >= 0) {
-                              onChange(selected.filter((s) => s !== item));
+                              onChange(selected.filter(s => s !== item));
                             } else {
                               onChange(multiple ? [...selected, item] : [item]);
                             }
@@ -642,8 +642,8 @@ export const Typeahead: React.FC<{
                                   index
                                 ),
                                 "border-blue-300": !!selected.find(
-                                  (s) => item === s
-                                ),
+                                  s => item === s
+                                )
                               }
                             )}
                           >
@@ -680,11 +680,11 @@ export const Typeahead: React.FC<{
                             key={key}
                             onClick={() => {
                               const index = selected.findIndex(
-                                (s) => item.value === s
+                                s => item.value === s
                               );
                               if (index >= 0) {
                                 onChange(
-                                  selected.filter((s) => s !== item.value),
+                                  selected.filter(s => s !== item.value),
                                   item.group
                                 );
                               } else {
@@ -714,8 +714,8 @@ export const Typeahead: React.FC<{
                                     index
                                   ),
                                   "border-blue-300": !!selected.find(
-                                    (s) => item.value === s
-                                  ),
+                                    s => item.value === s
+                                  )
                                 }
                               )}
                             >

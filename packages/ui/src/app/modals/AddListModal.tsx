@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { observer, useLocalStore } from "mobx-react";
-import { useKeyPress } from "~/hooks";
+import { useKeyPress } from "demo-nest-ui-shared";
 import { Modal } from "~/components/Modal/Modal";
 import { Button } from "~/components/Button/Button";
 import { LoadingService } from "~/components/Loading/LoadingService";

@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import { createService } from "react-service-provider";
 import {
   LoadingService,
-  LoadingStore,
+  LoadingStore
 } from "~/components/Loading/LoadingService";
 import { IList } from "~/app/models/list.interface";
 import { API } from "@env/config";
-import { getPagesArray } from "~/utils";
+import { getPagesArray } from "demo-nest-ui-shared";
 
 export const ListService = createService(
   () => {
@@ -33,19 +33,19 @@ export const ListService = createService(
         state.load();
       },
       reduceListDomainResponseItem: (arr, domainDto) => {
-        domainDto.contacts.forEach((c) => {
+        domainDto.contacts.forEach(c => {
           arr.push({
             id: c.id,
             domain: domainDto.name,
             email: c.email,
             firstName: c.firstName,
             lastName: c.lastName,
-            confidence: c.confidence,
+            confidence: c.confidence
           });
         });
         return arr;
       },
-      remapListResponseItem: (listDto) => {
+      remapListResponseItem: listDto => {
         const list = {
           id: listDto.id,
           name: listDto.name,
@@ -53,7 +53,7 @@ export const ListService = createService(
           contacts: listDto.domains.reduce(
             state.reduceListDomainResponseItem,
             []
-          ),
+          )
         };
         return list;
       },
@@ -69,15 +69,15 @@ export const ListService = createService(
         } catch (error) {
           console.error(error);
           toast("There was an error while loading data", {
-            type: "error",
+            type: "error"
           });
         }
         state.loadingService.setLoading(false, "dashboard");
-      },
+      }
     }));
     return state;
   },
-  (state) => {
+  state => {
     state.loadingService = React.useContext(LoadingService);
   }
 );
