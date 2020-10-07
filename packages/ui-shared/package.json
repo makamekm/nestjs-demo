@@ -4,6 +4,10 @@
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    "./": "./dist/"
+  },
   "dependencies": {
     "mobx": "^5.15.7",
     "mobx-localstorage": "^1.2.0",
