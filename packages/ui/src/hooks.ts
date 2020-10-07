@@ -30,7 +30,7 @@ export const useDelay: <T>(
   delay?: number
 ) => void = (state, name, newName, delay = 200) => {
   React.useEffect(() => {
-    const setValue = debounce((value) => (state[newName] = value), delay);
+    const setValue = debounce(value => (state[newName] = value), delay);
     return autorun(() => {
       setValue(state[name]);
     });
@@ -44,7 +44,7 @@ export const useOnChange: <T, K extends keyof T>(
   delay?: number
 ) => void = (state, name, fn, delay = 100) => {
   React.useEffect(() => {
-    (delay ? debounce((value) => fn(value), delay) : (value) => fn(value))(
+    (delay ? debounce(value => fn(value), delay) : value => fn(value))(
       state[name]
     );
     return reaction(
@@ -67,18 +67,40 @@ export const useOnLoad: <T>(fn: () => any, delay?: number) => void = (
   }, [fn, delay]);
 };
 
-export const useOnLoadPathname: <T>(fn: () => any, delay?: number) => void = (
-  fn,
-  delay = 0
-) => {
+export const useOnLoadPathname: (
+  fn: (pathname: string) => any,
+  delay?: number
+) => void = (fn, delay = 0) => {
   const { pathname } = useLocation();
   React.useEffect(() => {
     if (delay) {
-      setTimeout(() => fn(), delay);
+      setTimeout(() => fn(pathname), delay);
     } else {
-      fn();
+      fn(pathname);
     }
   }, [fn, delay, pathname]);
+};
+
+export const useOnLoadPathnameRegExp: (
+  regExp: RegExp,
+  fn: (
+    location: ReturnType<typeof useLocation>
+  ) => void | Promise<void> | (() => void),
+  delay?: number
+) => void = (regExp, fn, delay = 0) => {
+  const location = useLocation();
+  React.useEffect(() => {
+    if (regExp.test(location.pathname)) {
+      if (delay) {
+        setTimeout(() => fn(location), delay);
+      } else {
+        const callback = fn(location) as () => void;
+        if (!(callback instanceof Promise)) {
+          return fn(location) as () => void;
+        }
+      }
+    }
+  }, [fn, delay, location.pathname, regExp, location]);
 };
 
 export const setObservable = <T, K extends keyof T>(
@@ -202,7 +224,7 @@ export function useClickOutside(ref, fn) {
 
 export function useKeyPress(targetKey, down?, up?) {
   const downHandler = React.useCallback(
-    (e) => {
+    e => {
       if (e.key === targetKey) {
         down && down(e);
       }
@@ -211,7 +233,7 @@ export function useKeyPress(targetKey, down?, up?) {
   );
 
   const upHandler = React.useCallback(
-    (e) => {
+    e => {
       if (e.key === targetKey) {
         up && up(e);
       }

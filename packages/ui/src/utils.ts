@@ -69,3 +69,19 @@ export function getPagesArray(
 
   return pages;
 }
+
+export function handleResponceError(response: Response): Response {
+  if (!response.ok) {
+    throw new Error(String(response.status));
+  } else {
+    return response;
+  }
+}
+
+export async function fetchJson<T = any>(
+  ...args: Parameters<typeof fetch>
+): Promise<T> {
+  const responce = await fetch(...args);
+  handleResponceError(responce);
+  return await responce.json();
+}
